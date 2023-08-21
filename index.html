@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 90%;
+            max-width: 1200px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .tabs {
+            flex: 1;
+            border-left: 1px solid #ccc;
+            padding: 20px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        /* Style form inputs */
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Style submit button */
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Style tabs */
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        /* Style tables */
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        /* Responsive styling */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .tabs {
+                border-left: none;
+                padding-top: 20px;
+            }
+        }
+    </style>
+    <script>
+        function showTab(tabId) {
+            var tabs = document.getElementsByClassName('tab-content');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
+            document.getElementById(tabId).classList.add('active');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Employee Details Submission</h1>
+            <form action="submit.php" method="post">
+                <label for="employee_id">Employee ID:</label>
+                <input type="text" id="employee_id" name="employee_id" required><br>
+
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required><br>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select><br>
+
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required><br>
+
+                <label for="project">Project:</label>
+                <input type="text" id="project" name="project" required><br>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="tabs">
+            <ul>
+                <li><a href="#" onclick="showTab('tab-details')">Get Employee Details</a></li>
+                <li><a href="#" onclick="showTab('tab-update')">Update Employee Details</a></li>
+                <li><a href="#" onclick="showTab('tab-delete')">Delete Employee Details</a></li>
+            </ul>
+
+            <div id="tab-details" class="tab-content">
+                <h2>Employee Details</h2>
+                <form action="getdetails.php" method="post">
+                    <label for="employee_id">Employee ID:</label>
+                    <input type="text" id="employee_id" name="employee_id" required>
+                    <input type="submit" value="Get Details">
+                </form>
+                <?php include("getdetails.php"); ?>
+            </div>
+
+            <div id="tab-update" class="tab-content">
+                <h2>Update Employee Details</h2>
+                <form action="update.php" method="post">
+                    <label for="update_employee_id">Employee ID:</label>
+                    <input type="text" id="update_employee_id" name="update_employee_id" required><br>
+
+                    <label for="update_name">New Name:</label>
+                    <input type="text" id="update_name" name="update_name" required><br>
+
+                    <label for="update_age">New Age:</label>
+                    <input type="number" id="update_age" name="update_age" required><br>
+
+                    <label for="update_gender">New Gender:</label>
+                    <select id="update_gender" name="update_gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select><br>
+
+                    <label for="update_city">New City:</label>
+                    <input type="text" id="update_city" name="update_city" required><br>
+
+                    <label for="update_project">New Project:</label>
+                    <input type="text" id="update_project" name="update_project" required><br>
+
+                    <input type="submit" value="Update">
+                </form>
+            </div>
+
+            <div id="tab-delete" class="tab-content">
+                <h2>Delete Employee Details</h2>
+                <form action="delete.php" method="post">
+                    <label for="delete_employee_id">Employee ID:</label>
+                    <input type="text" id="delete_employee_id" name="delete_employee_id" required><br>
+
+                    <input type="submit" value="Delete">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
