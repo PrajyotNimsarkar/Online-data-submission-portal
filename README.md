@@ -9,7 +9,7 @@ Launch a RDS MySQL databases with customized configurations and connect above EC
 Connect to instance with putty 
 
 
-------------------------------- Commands -----------------------------------------------------------------------------------------------
+------------------------------- Commands ---------------------------------------------------------------------------------
 
 sudo apt update
 
@@ -28,7 +28,7 @@ sudo chmod 777 index.html
 sudo nano index.html         ------------(Clear the existing HTML code and replace it with our code)
 
 
-------------------------------- MySQL connection -------------------------------------------------------------------------------------
+------------------------------- MySQL connection -------------------------------------------------------------------------
 
 mysql -h 'endpoint' -P 3306 -u 'username' -p 'password'
 
@@ -40,7 +40,7 @@ create table 'table name' (Emp_ID int(20), Name varchar(50), Age int(20), Gender
 
 
 
----------------------------- Create all PHP connection files ----------------------------------------------------------------------
+---------------------------- Create all PHP connection files -------------------------------------------------------------
 
 sudo nano submit.php        ------------(paste our PHP code with current RDS endpoint, Username, Password, DB name )
 
