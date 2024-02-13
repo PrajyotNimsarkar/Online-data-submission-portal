@@ -1,4 +1,3 @@
-//Delete-api.php
 <?php
 $connection = new mysqli("demo-project-db.cogaippupwwk.us-east-1.rds.amazonaws.com", "admin", "admin123", "employee");
 
@@ -12,7 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "DELETE FROM emp_details WHERE Emp_ID = '$emp_id'";
 
     if ($connection->query($sql) === TRUE) {
-        $response = "Employee details deleted successfully.";
+        if ($connection->affected_rows > 0) {
+            $response = "Employee details deleted successfully.";
+        } else {
+            $response = "The employee does not exist.";
+        }
     } else {
         $response = "Error: " . $sql . "<br>" . $connection->error;
     }
