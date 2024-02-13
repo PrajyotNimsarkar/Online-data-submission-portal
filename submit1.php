@@ -1,4 +1,3 @@
-//submit-api.php
 <?php
 $connection = new mysqli("demo-project-db.cogaippupwwk.us-east-1.rds.amazonaws.com", "admin", "admin123", "employee");
 
@@ -14,14 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $city = $_POST['city'];
     $project = $_POST['project'];
 
-    // Check if Emp_ID is already in the database
     $check_query = "SELECT Emp_ID FROM emp_details WHERE Emp_ID = '$emp_id'";
     $check_result = $connection->query($check_query);
 
-    if (($check_result->num_rows > 0) === False) {
+    if (($check_result->num_rows > 0) === TRUE) {
         $response = "Employee with the same Emp_ID already exists.";
     } else {
-        // Insert new employee details
+
         $insert_query = "INSERT INTO emp_details (Emp_ID, Name, Age, Gender, City, Project) VALUES ('$emp_id', '$name', '$age', '$gender', '$city', '$project')";
 
         if ($connection->query($insert_query) === TRUE) {
