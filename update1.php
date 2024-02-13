@@ -1,4 +1,3 @@
-//Update-api.php
 <?php
 $connection = new mysqli("demo-project-db.cogaippupwwk.us-east-1.rds.amazonaws.com", "admin", "admin123", "employee");
 
@@ -14,8 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $city = $_POST['update_city'];
     $project = $_POST['update_project'];
 
-    $sql = "UPDATE emp_details SET Name = '$name', Age = '$age', Gender = '$gender',
-            City = '$city', Project = '$project' WHERE Emp_ID = '$emp_id'";
+    $sql = "UPDATE emp_details SET Name = '$name', Age = '$age', Gender = '$gender',City = '$city', Project = '$project' WHERE Emp_ID = '$emp_id'";
 
     if ($connection->query($sql) === TRUE) {
         $response = "Employee details updated successfully.";
