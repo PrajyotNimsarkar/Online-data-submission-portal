@@ -1,4 +1,5 @@
 # Online-data-submission-portal
+This is the updated version where we have deployed docker container to run this same application 
 The webpage consists of a submission form wherein required details are to be submitted by the user, then the details are stored in MYSQL database which is configured in the backend. The resources are hosted on cloud platform. This can be internally used by any organization to maintain records of there employees, students, etc.
 
 Execute commands step by step as followed:
@@ -14,6 +15,10 @@ Connect to instance with putty
 sudo apt update
 
 sudo apt install apache2
+
+sudo apt install docker.io
+
+sudo usermod -aG docker $USER (restart instance)
 
 sudo apt install mysql-client
 
@@ -50,7 +55,13 @@ sudo nano update.php
 
 sudo nano delete.php
 
+sudo nano Dockerfile        -------------(paste docekr file content)
+
 sudo service apache2 restart
+
+docker build -t my-image
+
+docker run -d -p 4000:80 my-image
 
 Visit webpage it should be up and running
 
