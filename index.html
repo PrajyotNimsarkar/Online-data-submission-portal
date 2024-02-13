@@ -5,9 +5,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f0f0f0;
             margin: 0;
-            padding: 0;
+            padding: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,42 +16,72 @@
 
         .container {
             display: flex;
-            width: 90%;
-            max-width: 1200px;
+            width: 120%;
+            max-width: 1300px;
             background-color: #fff;
-            border-radius: 5px;
+            border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         .form-container {
             flex: 1;
-            padding: 20px;
+            padding: 50px;
+        }
+
+        .header {
+            background-color: #007bff; /* Blue background color for header */
+            color: #fff; /* White text color */
+            padding: 0;
+            text-align: center;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            width: 20%;
+        }
+
+        .header h1 {
+            margin: 10%;
+            margin-top: 80%;
         }
 
         .tabs {
             flex: 1;
+            background-color: #f5f5f5;
             border-left: 1px solid #ccc;
-            padding: 20px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .tabs ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        .tabs li {
+            margin-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .tabs a {
+            text-decoration: none;
+            color: #fff; /* White font color for buttons */
+            font-weight: bold;
+            background-color: #007bff; /* Blue background color for buttons */
+            padding: 10px 20px;
+            border-radius: 5px;
         }
 
         .tab-content {
+            margin-top: 40px;
             display: none;
+            text-align: left;
+            width: 90%;
         }
 
         .tab-content.active {
             display: block;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        table, th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
         }
 
         /* Style form inputs */
@@ -73,32 +103,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-        }
-
-        /* Style tabs */
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        ul li {
-            margin-bottom: 10px;
-        }
-
-        ul li a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        /* Style tables */
-        th, td {
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #007bff;
-            color: #fff;
+            margin-top: 10px;
         }
 
         /* Responsive styling */
@@ -124,29 +129,31 @@
 </head>
 <body>
     <div class="container">
-        <div class="form-container">
+        <div class="header">
             <h1>Employee Details Submission</h1>
+        </div>
+        <div class="form-container">
             <form action="submit.php" method="post">
-                <label for="employee_id">Employee ID:</label>
+                <label for="employee_id"><b>Employee ID:</b></label>
                 <input type="text" id="employee_id" name="employee_id" required><br>
 
-                <label for="name">Name:</label>
+                <label for="name"><b>Name:</b></label>
                 <input type="text" id="name" name="name" required><br>
 
-                <label for="age">Age:</label>
+                <label for="age"><b>Age:</b></label>
                 <input type="number" id="age" name="age" required><br>
 
-                <label for="gender">Gender:</label>
+                <label for="gender"><b>Gender:</b></label>
                 <select id="gender" name="gender">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
                 </select><br>
 
-                <label for="city">City:</label>
+                <label for="city"><b>City:</b></label>
                 <input type="text" id="city" name="city" required><br>
 
-                <label for="project">Project:</label>
+                <label for="project"><b>Project:</b></label>
                 <input type="text" id="project" name="project" required><br>
 
                 <input type="submit" value="Submit">
@@ -154,14 +161,14 @@
         </div>
         <div class="tabs">
             <ul>
-                <li><a href="#" onclick="showTab('tab-details')">Get Employee Details</a></li>
-                <li><a href="#" onclick="showTab('tab-update')">Update Employee Details</a></li>
-                <li><a href="#" onclick="showTab('tab-delete')">Delete Employee Details</a></li>
+                <li><a href="#" onclick="showTab('tab-details')"><strong>Get Employee Details</strong></a></li>
+                <li><a href="#" onclick="showTab('tab-update')"><strong>Update Employee Details</strong></a></li>
+                <li><a href="#" onclick="showTab('tab-delete')"><strong>Delete Employee Details</strong></a></li>
             </ul>
 
             <div id="tab-details" class="tab-content">
                 <h2>Employee Details</h2>
-                <form action="getdetails.php" method="post">
+                <form action="getdetails.php" method="get">
                     <label for="employee_id">Employee ID:</label>
                     <input type="text" id="employee_id" name="employee_id" required>
                     <input type="submit" value="Get Details">
