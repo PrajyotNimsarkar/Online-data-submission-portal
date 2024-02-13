@@ -1,4 +1,3 @@
-//GetDetails-api.php
 <?php
 $connection = new mysqli("demo-project-db.cogaippupwwk.us-east-1.rds.amazonaws.com", "admin", "admin123", "employee");
 
