@@ -22,7 +22,7 @@ WORKDIR /var/www/html
 COPY . /var/www/html
 
 # Expose port 80 (assuming Apache is running on this port on your EC2 instance)
-EXPOSE 4000
+EXPOSE 80
 
 # Start Apache in the foreground
 CMD ["apache2-foreground"]
