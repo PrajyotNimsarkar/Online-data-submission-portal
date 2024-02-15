@@ -1,22 +1,7 @@
-# Use a Debian base image
-FROM debian:bullseye-slim
-
-# Install Apache2
-RUN apt-get update && \
-    apt-get install -y apache2 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# Expose port 80 for Apache
-EXPOSE 80
-
-# Start Apache in the foreground
-CMD ["apache2-foreground"]
-
-# Switch to PHP with Apache image
+# Use an official PHP runtime as a parent image
 FROM php:7.4-apache
 
-# Continue with installing PHP extensions and configuring PHP
+# Install necessary PHP extensions and MySQL client
 RUN apt-get update && \
     apt-get install -y \
         libpq-dev \
@@ -35,3 +20,9 @@ WORKDIR /var/www/html
 
 # Copy the current directory contents into the container
 COPY . /var/www/html
+
+# Expose port 80 (assuming Apache is running on this port on your EC2 instance)
+EXPOSE 80
+
+# Start Apache in the foreground
+CMD ["apache2-foreground"]
